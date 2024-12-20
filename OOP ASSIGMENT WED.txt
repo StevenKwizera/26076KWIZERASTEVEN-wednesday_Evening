@@ -1,0 +1,167 @@
+/*
+Summary: This answers of Java programs demonstrates exception handling through separate classes, each implemented as an independent program.
+*/
+
+// IOExceptionExample.java
+import java.io.*;
+public class IOExceptionExample {
+    public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("nonexistentfile.txt"))) {
+            System.out.println(reader.readLine());
+        } catch (IOException e) {
+            System.out.println("IOException caught: " + e.getMessage());
+        }
+    }
+}
+
+// FileNotFoundExceptionExample.java
+import java.io.*;
+public class FileNotFoundExceptionExample {
+    public static void main(String[] args) {
+        try {
+            FileInputStream file = new FileInputStream("missingfile.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException caught: " + e.getMessage());
+        }
+    }
+}
+
+// EOFExceptionExample.java
+import java.io.*;
+public class EOFExceptionExample {
+    public static void main(String[] args) {
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("testfile.txt"))) {
+            while (true) {
+                System.out.println(dis.readUTF());
+            }
+        } catch (EOFException e) {
+            System.out.println("EOFException caught: End of file reached.");
+        } catch (IOException e) {
+            System.out.println("IOException caught: " + e.getMessage());
+        }
+    }
+}
+
+// SQLExceptionExample.java
+import java.sql.*;
+public class SQLExceptionExample {
+    public static void main(String[] args) {
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/nonexistentdb", "user", "pass");
+        } catch (SQLException e) {
+            System.out.println("SQLException caught: " + e.getMessage());
+        }
+    }
+}
+
+// ClassNotFoundExceptionExample.java
+public class ClassNotFoundExceptionExample {
+    public static void main(String[] args) {
+        try {
+            Class.forName("com.unknown.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("ClassNotFoundException caught: " + e.getMessage());
+        }
+    }
+}
+
+// ArithmeticExceptionExample.java
+public class ArithmeticExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException caught: Division by zero.");
+        }
+    }
+}
+
+// NullPointerExceptionExample.java
+public class NullPointerExceptionExample {
+    public static void main(String[] args) {
+        try {
+            String str = null;
+            System.out.println(str.length());
+        } catch (NullPointerException e) {
+            System.out.println("NullPointerException caught: Null reference accessed.");
+        }
+    }
+}
+
+// ArrayIndexOutOfBoundsExceptionExample.java
+public class ArrayIndexOutOfBoundsExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int[] arr = {1, 2, 3};
+            System.out.println(arr[5]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException caught: Invalid array index.");
+        }
+    }
+}
+
+// ClassCastExceptionExample.java
+public class ClassCastExceptionExample {
+    public static void main(String[] args) {
+        try {
+            Object obj = new Integer(42);
+            String str = (String) obj;
+        } catch (ClassCastException e) {
+            System.out.println("ClassCastException caught: Invalid type casting.");
+        }
+    }
+}
+
+// IllegalArgumentExceptionExample.java
+public class IllegalArgumentExceptionExample {
+    public static void main(String[] args) {
+        try {
+            Thread.sleep(-1000);
+        } catch (IllegalArgumentException | InterruptedException e) {
+            System.out.println("IllegalArgumentException caught: " + e.getMessage());
+        }
+    }
+}
+
+// NumberFormatExceptionExample.java
+public class NumberFormatExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int number = Integer.parseInt("abc");
+        } catch (NumberFormatException e) {
+            System.out.println("NumberFormatException caught: Invalid number format.");
+    젨젨}
+젨젨}
+}
+//
+}
+
+10. IllegalArgumentException
+
+public class IllegalArgumentExceptionEx {
+    public static void main(String[] args) {
+        try {
+            setAge(-1); // Invalid argument
+        } catch (IllegalArgumentException e) {
+            System.out.println("Illegal argument: " + e.getMessage());
+        }
+    }
+
+    public static void setAge(int age) {
+        if (age < 0) {
+            throw new IllegalArgumentException("Age cannot be negative.");
+        }
+    }
+}
+
+11. NumberFormatException
+
+public class NumberFormatExceptionEx {
+    public static void main(String[] args) {
+        try {
+            int num = Integer.parseInt("abc"); // Invalid string format for number
+        } catch (NumberFormatException e) {
+            System.out.println("Number format exception: " + e.getMessage());
+        }
+    }
+}
